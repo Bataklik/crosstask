@@ -9,5 +9,20 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Tasks() {
-    return <div>Tasks</div>;
+    return (
+        <div className="bg-red-500 h-screen">
+            {/* Header */}
+            <div className="bg-blue-500">
+                <h1>Tasks</h1>
+            </div>
+            {/* Add new Task  */}
+            <div className="bg-green-500">
+                <p>New Task</p>
+            </div>
+            {/* List of Tasks */}
+            <div className="bg-yellow-500">
+                <p>List of Tasks</p>
+            </div>
+        </div>
+    );
 }
