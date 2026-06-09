@@ -1,5 +1,6 @@
 import React from "react";
 import type { Route } from "../+types/root";
+import { TaskHeader } from "./TaskHeader";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -12,9 +13,7 @@ export default function Tasks() {
     return (
         <div className="bg-red-500 h-screen">
             {/* Header */}
-            <div className="bg-blue-500">
-                <h1>Tasks</h1>
-            </div>
+            <TaskHeader />
             {/* Add new Task  */}
             <div className="bg-green-500">
                 <p>New Task</p>
