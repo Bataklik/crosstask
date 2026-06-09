@@ -1,4 +1,11 @@
-export function TaskList() {
+import type { Task } from "~/types";
+
+interface TasksListProps {
+    tasks: Task[];
+    setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
+
+export function TaskList({ tasks, setTasks }: TasksListProps) {
     return (
         <div className="flex mx-4 justify-center ">
             <table className="w-full ">
@@ -23,7 +30,7 @@ export function TaskList() {
                             </p>
                         </td>
                         <td className="justify-center py-8 text-center">
-                            <input type="checkbox" />
+                            <input className="w-4 h-4" type="checkbox" />
                         </td>
                     </tr>
 
@@ -37,7 +44,7 @@ export function TaskList() {
                             </p>
                         </td>
                         <td className=" justify-center py-8 text-center">
-                            <input type="checkbox" />
+                            <input className="w-4 h-4" type="checkbox" />
                         </td>
                     </tr>
                 </tbody>
