@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { Route } from "../+types/root";
 import { TaskHeader } from "./TaskHeader";
 import { NewTask } from "./NewTask";
+import { TaskList } from "./TaskList";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -21,9 +22,7 @@ export default function Tasks() {
             {/* Add new Task  */}
             <NewTask task={task} setTask={setTask} addTask={addTaskHandler} />
             {/* List of Tasks */}
-            <div className="bg-yellow-500">
-                <p>List of Tasks</p>
-            </div>
+            <TaskList />
         </div>
     );
 }
