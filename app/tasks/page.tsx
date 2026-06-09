@@ -3,6 +3,7 @@ import type { Route } from "../+types/root";
 import { TaskHeader } from "./TaskHeader";
 import { NewTask } from "./NewTask";
 import { TaskList } from "./TaskList";
+import type { Task } from "~/types";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -12,6 +13,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Tasks() {
+    const [tasks, setTasks] = useState<Task[]>([
+        { id: 1, title: "Cleaning the bathroom", completed: false },
+    ]);
     const [task, setTask] = useState<null | string>(null);
 
     const addTaskHandler = (newTask: string | null) => {};
@@ -22,7 +26,7 @@ export default function Tasks() {
             {/* Add new Task  */}
             <NewTask task={task} setTask={setTask} addTask={addTaskHandler} />
             {/* List of Tasks */}
-            <TaskList />
+            <TaskList tasks={tasks} setTasks={setTasks} />
         </div>
     );
 }
