@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Route } from "../+types/root";
 import { TaskHeader } from "./TaskHeader";
 import { NewTask } from "./NewTask";
@@ -11,12 +11,15 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Tasks() {
+    const [task, setTask] = useState<null | string>(null);
+
+    const addTaskHandler = (newTask: string | null) => {};
     return (
-        <div className="bg-red-500 h-screen">
+        <div className="mx-12 h-screen">
             {/* Header */}
             <TaskHeader />
             {/* Add new Task  */}
-            <NewTask />
+            <NewTask task={task} setTask={setTask} addTask={addTaskHandler} />
             {/* List of Tasks */}
             <div className="bg-yellow-500">
                 <p>List of Tasks</p>
