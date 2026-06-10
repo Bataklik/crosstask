@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import type { Route } from "../+types/root";
+import { useState } from "react";
 import { TaskHeader } from "./TaskHeader";
 import { NewTask } from "./NewTask";
 import { TaskList } from "./TaskList";
+import type { Route } from "../+types/root";
 import type { Task } from "~/types";
 
 export function meta({}: Route.MetaArgs) {
@@ -17,12 +17,14 @@ export default function Tasks() {
         { id: 2, title: "Cleaning the bathroom", completed: false },
         { id: 1, title: "Cleaning the bedroom", completed: false },
     ]);
-    const [task, setTask] = useState<null | string>(null);
-    const addTaskHandler = (newTask: string | null) => {
-        if (newTask == null) return;
-        let newTaskId = tasks.sort((a, b) => b.id - a.id)[0].id + 1;
+    const [task, setTask] = useState<string>("");
+    const addTaskHandler = (newTask: string) => {
+        if (newTask == "") return;
+        let newTaskId: number =
+            tasks.length == 0 ? 1 : tasks.sort((a, b) => b.id - a.id)[0].id + 1;
+
         tasks.push({ id: newTaskId, title: newTask, completed: false });
-        console.log(tasks);
+        setTask("");
     };
     const removeTaskHandler = (taskId: number) => {
         setTasks(tasks.filter((_task) => (_task.id != taskId ? _task : null)));
