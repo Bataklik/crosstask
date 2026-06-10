@@ -10,7 +10,7 @@ export function NewTask({ task, setTask, addTask }: NewTaskProps) {
         <div className="flex px-4 items-center justify-center my-6">
             <input
                 type="text"
-                placeholder="Add new Task"
+                placeholder="Add new Task..."
                 className="flex-3 border w-full border-purple-700 sm:px-4 sm:py-3 md:px-2 md:py-2 rounded-md"
                 value={task}
                 onChange={(e) => setTask(e.target.value)}
