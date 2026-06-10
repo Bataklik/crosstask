@@ -5,16 +5,17 @@ import { TableHead } from "./Table/TableHead";
 
 interface TasksListProps {
     tasks: Task[];
-    setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+    removeTask: (taskId: number) => void;
+    toggleTask: (taskId: number) => void;
 }
 
-export function TaskList({ tasks, setTasks }: TasksListProps) {
+export function TaskList({ tasks, removeTask, toggleTask }: TasksListProps) {
     return (
         <div className="flex mx-4 justify-center ">
             <table className="w-full ">
                 <TableCaption />
                 <TableHead />
-                <TableBody tasks={tasks} />
+                <TableBody tasks={tasks} toggleTask={toggleTask} />
             </table>
         </div>
     );
