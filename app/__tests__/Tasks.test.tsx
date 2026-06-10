@@ -6,7 +6,7 @@ describe("Tasks page", () => {
     it("should render the Tasks page", async () => {
         //* Arrange
         render(<TasksPage />);
-        const mockTask = `New Task ${Math.random()}`;
+        let mockTask = `New Task ${Math.random()}`;
         const header = screen.getByText("CrossTasks");
         const input = screen.getByPlaceholderText("Add new Task...");
         const addButton = screen.getByRole("button", { name: "Add new Task" });
@@ -21,5 +21,20 @@ describe("Tasks page", () => {
         expect(addButton).toBeInTheDocument();
         expect(taskList).toBeInTheDocument();
         expect(screen.getByText(mockTask)).toBeInTheDocument();
+    });
+
+    it("should not add a task with empty title", async () => {
+        //* Arrange
+        const alertMock = vi
+            .spyOn(window, "alert")
+            .mockImplementation(() => {});
+        render(<TasksPage />);
+        const addButton = screen.getByRole("button", { name: "Add new Task" });
+        //* Act
+        await userEvent.click(addButton);
+
+        //* Assert
+        expect(alertMock).toHaveBeenCalledTimes(1);
+        expect(alertMock).toHaveBeenCalledWith("Task title cannot be empty");
     });
 });
