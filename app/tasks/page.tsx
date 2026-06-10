@@ -24,7 +24,9 @@ export default function Tasks() {
         tasks.push({ id: newTaskId, title: newTask, completed: false });
         console.log(tasks);
     };
-    const removeTaskHandler = (taskId: number) => {};
+    const removeTaskHandler = (taskId: number) => {
+        setTasks(tasks.filter((_task) => (_task.id != taskId ? _task : null)));
+    };
     const toggleTaskHandler = (taskId: number) => {
         let newTasks = tasks.map((_task) =>
             _task.id != taskId
