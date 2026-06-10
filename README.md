@@ -8,3 +8,4 @@
 - [Table Inspiration](https://material.angular.dev/components/table/overview)
 - [display CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/display)
 - [Table HTML Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table)
+- [React Update array in state](https://react.dev/learn/updating-arrays-in-state)
