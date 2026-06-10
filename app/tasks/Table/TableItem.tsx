@@ -1,6 +1,11 @@
 import type { Task } from "~/types";
 
-export function TableItem({ task }: { task: Task }) {
+interface TableItemProps {
+    task: Task;
+    toggleTask: (taskId: number) => void;
+}
+
+export function TableItem({ task, toggleTask }: TableItemProps) {
     return (
         <tr className="border-b-2 border-purple-700">
             <td className="justify-center py-8 text-center ">
@@ -14,6 +19,7 @@ export function TableItem({ task }: { task: Task }) {
                     className="w-4 h-4"
                     type="checkbox"
                     checked={task.completed}
+                    onChange={(e) => toggleTask(task.id)}
                 />
             </td>
         </tr>
