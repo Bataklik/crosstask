@@ -10,3 +10,4 @@
 - [Table HTML Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table)
 - [React Update array in state](https://react.dev/learn/updating-arrays-in-state)
 - [React Rendering lists](https://react.dev/learn/rendering-lists)
+- [React SVGR](https://react-svgr.com/playground/)
