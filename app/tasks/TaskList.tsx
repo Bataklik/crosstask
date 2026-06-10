@@ -14,7 +14,7 @@ export function TaskList({ tasks, setTasks }: TasksListProps) {
             <table className="w-full ">
                 <TableCaption />
                 <TableHead />
-                <TableBody />
+                <TableBody tasks={tasks} />
             </table>
         </div>
     );
