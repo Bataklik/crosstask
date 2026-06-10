@@ -19,7 +19,10 @@ export default function Tasks() {
     ]);
     const [task, setTask] = useState<string>("");
     const addTaskHandler = (newTask: string) => {
-        if (newTask == "") return;
+        if (newTask == "") {
+            alert("Task title cannot be empty");
+            return;
+        }
         let newTaskId: number =
             tasks.length == 0 ? 1 : tasks.sort((a, b) => b.id - a.id)[0].id + 1;
 
