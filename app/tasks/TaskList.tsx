@@ -1,7 +1,7 @@
 import type { Task } from "~/types";
-import { TableBody } from "./TableBody";
-import { TableCaption } from "./TableCaption";
-import { TableHead } from "./TableHead";
+import { TableBody } from "./Table/TableBody";
+import { TableCaption } from "./Table/TableCaption";
+import { TableHead } from "./Table/TableHead";
 
 interface TasksListProps {
     tasks: Task[];
