@@ -13,4 +13,5 @@
 - [React SVGR](https://react-svgr.com/playground/)
 - [React testing](https://legacy.reactjs.org/docs/testing.html)
 - [Why Vitest Is Better Than Jest: WebDevSimplified](https://www.youtube.com/watch?v=7f-71kYhK00)
-- [Vitest and React Testing Library Tutorial](https://vitest.dev/guide/)
+- [Vitest and React Testing Library Tutorial: RoadsideCoder](https://www.youtube.com/watch?v=6dOpQIwyV6g)
+- [Vitest Guide](https://vitest.dev/guide/)
