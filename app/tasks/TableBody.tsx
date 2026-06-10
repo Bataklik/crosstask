@@ -1,23 +1,12 @@
+import type { Task } from "~/types";
 import { TableItem } from "./TableItem";
 
-export function TableBody() {
+export function TableBody({ tasks }: { tasks: Task[] }) {
     return (
         <tbody>
-            <TableItem
-                task={{
-                    id: 1,
-                    title: "Cleaning the bathroom",
-                    completed: false,
-                }}
-            />
-
-            <TableItem
-                task={{
-                    id: 2,
-                    title: "Cleaning the hall",
-                    completed: false,
-                }}
-            />
+            {tasks.map((task) => (
+                <TableItem task={task} />
+            ))}
         </tbody>
     );
 }
