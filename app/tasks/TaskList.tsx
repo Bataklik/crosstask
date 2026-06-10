@@ -15,7 +15,11 @@ export function TaskList({ tasks, removeTask, toggleTask }: TasksListProps) {
             <table className="w-full ">
                 <TableCaption />
                 <TableHead />
-                <TableBody tasks={tasks} toggleTask={toggleTask} />
+                <TableBody
+                    tasks={tasks}
+                    removeTask={removeTask}
+                    toggleTask={toggleTask}
+                />
             </table>
         </div>
     );

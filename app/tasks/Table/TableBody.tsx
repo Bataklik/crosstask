@@ -4,13 +4,19 @@ import { TableItem } from "./TableItem";
 interface TableBodyProps {
     tasks: Task[];
     toggleTask: (taskId: number) => void;
+    removeTask: (taskId: number) => void;
 }
 
-export function TableBody({ tasks, toggleTask }: TableBodyProps) {
+export function TableBody({ tasks, removeTask, toggleTask }: TableBodyProps) {
     return (
         <tbody>
             {tasks.map((task) => (
-                <TableItem key={task.id} task={task} toggleTask={toggleTask} />
+                <TableItem
+                    key={task.id}
+                    task={task}
+                    removeTask={removeTask}
+                    toggleTask={toggleTask}
+                />
             ))}
         </tbody>
     );
