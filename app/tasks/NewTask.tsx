@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 interface NewTaskProps {
-    task: string | null;
-    setTask: React.Dispatch<React.SetStateAction<string | null>>;
-    addTask: (task: string | null) => void;
+    task: string;
+    setTask: React.Dispatch<React.SetStateAction<string>>;
+    addTask: (task: string) => void;
 }
 export function NewTask({ task, setTask, addTask }: NewTaskProps) {
     return (
@@ -12,6 +12,7 @@ export function NewTask({ task, setTask, addTask }: NewTaskProps) {
                 type="text"
                 placeholder="Add new Task"
                 className="flex-3 border w-full border-purple-700 sm:px-4 sm:py-3 md:px-2 md:py-2 rounded-md"
+                value={task}
                 onChange={(e) => setTask(e.target.value)}
             />
 

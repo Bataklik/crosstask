@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import type { Route } from "../+types/root";
+import { useState } from "react";
 import { TaskHeader } from "./TaskHeader";
 import { NewTask } from "./NewTask";
+import { TaskList } from "./TaskList";
+import type { Route } from "../+types/root";
+import type { Task } from "~/types";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -11,9 +13,34 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Tasks() {
-    const [task, setTask] = useState<null | string>(null);
+    const [tasks, setTasks] = useState<Task[]>([
+        { id: 2, title: "Cleaning the bathroom", completed: false },
+        { id: 1, title: "Cleaning the bedroom", completed: false },
+    ]);
+    const [task, setTask] = useState<string>("");
+    const addTaskHandler = (newTask: string) => {
+        if (newTask == "") return;
+        let newTaskId: number =
+            tasks.length == 0 ? 1 : tasks.sort((a, b) => b.id - a.id)[0].id + 1;
 
-    const addTaskHandler = (newTask: string | null) => {};
+        tasks.push({ id: newTaskId, title: newTask, completed: false });
+        setTask("");
+    };
+    const removeTaskHandler = (taskId: number) => {
+        setTasks(tasks.filter((_task) => (_task.id != taskId ? _task : null)));
+    };
+    const toggleTaskHandler = (taskId: number) => {
+        let newTasks = tasks.map((_task) =>
+            _task.id != taskId
+                ? _task
+                : {
+                      id: _task.id,
+                      title: _task.title,
+                      completed: !_task.completed,
+                  },
+        );
+        setTasks(newTasks);
+    };
     return (
         <div className="mx-12 h-screen">
             {/* Header */}
@@ -21,9 +48,11 @@ export default function Tasks() {
             {/* Add new Task  */}
             <NewTask task={task} setTask={setTask} addTask={addTaskHandler} />
             {/* List of Tasks */}
-            <div className="bg-yellow-500">
-                <p>List of Tasks</p>
-            </div>
+            <TaskList
+                tasks={tasks}
+                removeTask={removeTaskHandler}
+                toggleTask={toggleTaskHandler}
+            />
         </div>
     );
 }
