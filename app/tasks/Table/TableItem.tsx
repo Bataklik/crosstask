@@ -30,6 +30,7 @@ export function TableItem({ task, removeTask, toggleTask }: TableItemProps) {
                 <TrashIcon
                     className="h-6 hover:cursor-pointer"
                     onClick={() => removeTask(task.id)}
+                    aria-label={task.title}
                 />
             </td>
         </tr>
