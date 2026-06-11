@@ -12,11 +12,13 @@ export function meta({}: Route.MetaArgs) {
     ];
 }
 
-export default function Tasks() {
-    const [tasks, setTasks] = useState<Task[]>([
-        { id: 2, title: "Cleaning the bathroom", completed: false },
-        { id: 1, title: "Cleaning the bedroom", completed: false },
-    ]);
+export default function Tasks({
+    tasks,
+    setTasks,
+}: {
+    tasks: Task[];
+    setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}) {
     const [task, setTask] = useState<string>("");
     const addTaskHandler = (newTask: string) => {
         if (newTask == "") {

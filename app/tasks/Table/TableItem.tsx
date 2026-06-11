@@ -21,6 +21,7 @@ export function TableItem({ task, removeTask, toggleTask }: TableItemProps) {
                 <input
                     className="w-4 h-4"
                     type="checkbox"
+                    aria-label={`${task.title}`}
                     checked={task.completed}
                     onChange={(e) => toggleTask(task.id)}
                 />
