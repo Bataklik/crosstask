@@ -1,5 +1,7 @@
+import { useState } from "react";
 import type { Route } from "./+types/tasks";
 import Tasks from "~/tasks/page";
+import type { Task } from "~/types";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -9,5 +11,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function TasksRoute() {
-    return <Tasks />;
+    const [tasks, setTasks] = useState<Task[]>([
+        { id: 2, title: "Cleaning the bathroom", completed: false },
+        { id: 1, title: "Cleaning the bedroom", completed: false },
+    ]);
+    return <Tasks tasks={tasks} setTasks={setTasks} />;
 }
