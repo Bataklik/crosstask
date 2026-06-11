@@ -75,4 +75,25 @@ describe("Tasks page", () => {
             expect(mockSetTasks).toHaveBeenCalledTimes(1);
         });
     });
+
+    describe("Tasks deletion", () => {
+        it("should delete a task", async () => {
+            //* Arrange
+            let mockTask: Task = {
+                id: 1,
+                title: "Remove a task",
+                completed: false,
+            };
+            const mockSetTasks = vi.fn();
+            render(<TasksPage tasks={[mockTask]} setTasks={mockSetTasks} />);
+            const testId = `TrashIcon ${mockTask.title}`;
+            const taskList = screen.getByRole("table");
+            const trashIcon = screen.getByTestId(testId);
+
+            await userEvent.click(trashIcon);
+
+            expect(taskList).toBeInTheDocument();
+            expect(mockSetTasks).toHaveBeenCalledTimes(1);
+        });
+    });
 });
