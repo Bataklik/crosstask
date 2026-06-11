@@ -19,3 +19,6 @@ export const taskSlice = createSlice({
         toggleTask: (state, action: PayloadAction<number>) => {},
     },
 });
+
+export const { addTask, removeTask, toggleTask } = taskSlice.actions;
+export default taskSlice.reducer;
