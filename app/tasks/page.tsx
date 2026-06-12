@@ -16,6 +16,8 @@ export function meta({}: Route.MetaArgs) {
 export default function Tasks({
     tasks,
     addTask,
+    removeTask,
+    toggleTask,
 }: {
     tasks: Task[];
     addTask: (title: string) => void;

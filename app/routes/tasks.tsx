@@ -29,17 +29,19 @@ export default function TasksRoute() {
         dispatch(addTask(title));
     };
     const removeTaskHandler = (id: string) => {
+        console.log(id);
         dispatch(removeTask(id));
     };
     const toggleTaskHandler = (id: string) => {
+        console.log(id);
         dispatch(toggleTask(id));
     };
     return (
         <Tasks
             tasks={tasks}
-            addTask={addTaskHandler}
-            removeTask={removeTaskHandler}
-            toggleTask={toggleTaskHandler}
+            addTask={(title: string) => addTaskHandler(title)}
+            removeTask={(id: string) => removeTaskHandler(id)}
+            toggleTask={(id: string) => toggleTaskHandler(id)}
         />
     );
 }
