@@ -3,8 +3,8 @@ import type { Task } from "~/types";
 
 interface TableItemProps {
     task: Task;
-    removeTask: (taskId: number) => void;
-    toggleTask: (taskId: number) => void;
+    removeTask: (taskId: string) => void;
+    toggleTask: (taskId: string) => void;
 }
 
 export function TableItem({ task, removeTask, toggleTask }: TableItemProps) {
@@ -23,15 +23,19 @@ export function TableItem({ task, removeTask, toggleTask }: TableItemProps) {
                     type="checkbox"
                     aria-label={`${task.title}`}
                     checked={task.completed}
-                    onChange={(e) => toggleTask(task.id)}
+                    onChange={() => toggleTask(task.id)}
                 />
             </td>
             <td className="justify-center py-8 text-center">
-                <TrashIcon
-                    className="h-6 hover:cursor-pointer"
+                <button
+                    type="button"
                     onClick={() => removeTask(task.id)}
-                    aria-label={task.title}
-                />
+                    aria-label={`Delete ${task.title}`}
+                    data-testid={`TrashIcon ${task.title}`}
+                    className="inline-flex justify-center items-center p-1 rounded hover:bg-red-100 text-red-600 transition-colors"
+                >
+                    <TrashIcon className="h-6 hover:cursor-pointer" />
+                </button>
             </td>
         </tr>
     );

@@ -15,3 +15,4 @@
 - [Why Vitest Is Better Than Jest: WebDevSimplified](https://www.youtube.com/watch?v=7f-71kYhK00)
 - [Vitest and React Testing Library Tutorial: RoadsideCoder](https://www.youtube.com/watch?v=6dOpQIwyV6g)
 - [Vitest Guide](https://vitest.dev/guide/)
+- [Redux Toolkit Quick Start](https://redux-toolkit.js.org/tutorials/quick-start)
