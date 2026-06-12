@@ -5,8 +5,8 @@ import { TableHead } from "./Table/TableHead";
 
 interface TasksListProps {
     tasks: Task[];
-    removeTask: (taskId: number) => void;
-    toggleTask: (taskId: number) => void;
+    removeTask: (taskId: string) => void;
+    toggleTask: (taskId: string) => void;
 }
 
 export function TaskList({ tasks, removeTask, toggleTask }: TasksListProps) {

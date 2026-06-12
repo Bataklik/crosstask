@@ -3,8 +3,8 @@ import type { Task } from "~/types";
 
 interface TableItemProps {
     task: Task;
-    removeTask: (taskId: number) => void;
-    toggleTask: (taskId: number) => void;
+    removeTask: (taskId: string) => void;
+    toggleTask: (taskId: string) => void;
 }
 
 export function TableItem({ task, removeTask, toggleTask }: TableItemProps) {

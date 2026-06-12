@@ -3,8 +3,8 @@ import { TableItem } from "./TableItem";
 
 interface TableBodyProps {
     tasks: Task[];
-    toggleTask: (taskId: number) => void;
-    removeTask: (taskId: number) => void;
+    toggleTask: (taskId: string) => void;
+    removeTask: (taskId: string ) => void;
 }
 
 export function TableBody({ tasks, removeTask, toggleTask }: TableBodyProps) {

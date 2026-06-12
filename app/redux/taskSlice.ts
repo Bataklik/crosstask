@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Task } from "~/types";
+import type { RootState } from "./store";
 
 export interface TaskState extends Array<Task> {}
 
@@ -10,9 +11,29 @@ export const taskSlice = createSlice({
     name: "tasks",
     initialState,
     reducers: {
-        addTask: (state, action: PayloadAction<Task>) => {},
-        removeTask: (state, action: PayloadAction<number>) => {},
-        toggleTask: (state, action: PayloadAction<number>) => {},
+        addTask: {
+            prepare: (title: string) => {
+                return {
+                    payload: {
+                        id: crypto.randomUUID(),
+                        title,
+                        completed: false,
+                    },
+                };
+            },
+            reducer: (
+                state,
+                action: PayloadAction<{
+                    id: string;
+                    title: string;
+                    completed: boolean;
+                }>,
+            ) => {
+                state.push(action.payload);
+            },
+        },
+        removeTask: (state, action: PayloadAction<string>) => {},
+        toggleTask: (state, action: PayloadAction<string>) => {},
     },
 });
 
