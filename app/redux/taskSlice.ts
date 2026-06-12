@@ -32,8 +32,16 @@ export const taskSlice = createSlice({
                 state.push(action.payload);
             },
         },
-        removeTask: (state, action: PayloadAction<string>) => {},
-        toggleTask: (state, action: PayloadAction<string>) => {},
+        removeTask: (state, action: PayloadAction<string>) => {
+            return state.filter((tasks) => tasks.id != action.payload);
+        },
+        toggleTask: (state, action: PayloadAction<string>) => {
+            state.map((task) =>
+                task.id == action.payload
+                    ? (task.completed = !task.completed)
+                    : null,
+            );
+        },
     },
 });
 
