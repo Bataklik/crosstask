@@ -4,7 +4,6 @@ import { NewTask } from "./NewTask";
 import { TaskList } from "./TaskList";
 import type { Route } from "../+types/root";
 import type { Task } from "~/types";
-import { removeTask, toggleTask } from "~/redux/taskSlice";
 
 export function meta({}: Route.MetaArgs) {
     return [
