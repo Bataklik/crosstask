@@ -1,12 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import taskReducer from "./taskSlice";
-export const store = configureStore({
-    reducer: {
-        tasks: taskReducer,
-    },
+
+const rootReducer = combineReducers({
+    tasks: taskReducer,
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+export function setupStore(preloadedState?: PreloadedState) {
+    return configureStore({
+        reducer: rootReducer,
+        preloadedState,
+    });
+}
+
+export type PreloadedState = Parameters<typeof rootReducer>[0];
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];
+export const store = setupStore();

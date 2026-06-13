@@ -1,16 +1,32 @@
-import { describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import TasksPage from "~/tasks/page";
 import type { Task } from "~/types";
-import { log } from "util";
+import { render, screen } from "~/test_utils";
 
 describe("Tasks page", () => {
+    let mockAdd: import("vitest").Mock;
+    let mockRemove: import("vitest").Mock;
+    let mockToggle: import("vitest").Mock;
+
+    beforeEach(() => {
+        mockAdd = vi.fn();
+        mockRemove = vi.fn();
+        mockToggle = vi.fn();
+    });
+
     describe("Tasks creation", () => {
         it("should add a new task", async () => {
             //* Arrange
-            render(<TasksPage tasks={[]} setTasks={vi.fn()} />);
-            let mockTask = `New Task ${Math.random()}`;
+            render(
+                <TasksPage
+                    tasks={[]}
+                    addTask={mockAdd}
+                    removeTask={mockRemove}
+                    toggleTask={mockToggle}
+                />,
+            );
+            let mockNewTask = `New Task ${Math.random()}`;
             const header = screen.getByRole("heading", {
                 name: "CrossTasks",
             });
@@ -18,51 +34,65 @@ describe("Tasks page", () => {
             const addButton = screen.getByRole("button", {
                 name: "Add new Task",
             });
-            const taskList = screen.getByRole("table");
             //* Act
-            await userEvent.type(input, mockTask);
+            await userEvent.type(input, mockNewTask);
             await userEvent.click(addButton);
 
             //* Assert
-            expect(header).toBeInTheDocument();
-            expect(input).toBeInTheDocument();
-            expect(addButton).toBeInTheDocument();
-            expect(taskList).toBeInTheDocument();
-            expect(screen.getByText(mockTask)).toBeInTheDocument();
+            expect(mockAdd).toHaveBeenCalledTimes(1);
+            expect(mockAdd).toHaveBeenCalledWith(mockNewTask);
         });
 
         it("should not add a empty task", async () => {
             //* Arrange
-            const alertMock = vi
-                .spyOn(window, "alert")
-                .mockImplementation(() => {});
-            render(<TasksPage tasks={[]} setTasks={vi.fn()} />);
+            const emptyText = "*Title is required";
+            render(
+                <TasksPage
+                    tasks={[]}
+                    addTask={mockAdd}
+                    removeTask={mockRemove}
+                    toggleTask={mockToggle}
+                />,
+            );
             const addButton = screen.getByRole("button", {
-                name: "Add new Task",
+                name: /add new task/i,
             });
+
             //* Act
             await userEvent.click(addButton);
 
             //* Assert
-            expect(alertMock).toHaveBeenCalledTimes(1);
-            expect(alertMock).toHaveBeenCalledWith(
-                "Task title cannot be empty",
-            );
+            const alertParagraph = screen.getByRole("alert");
+            expect(alertParagraph).toHaveTextContent(emptyText);
+            expect(mockAdd).not.toHaveBeenCalled();
         });
     });
 
     describe("Tasks toggle", () => {
         it("should toggle a task", async () => {
             //* Arrange
+            let mockAdd = vi.fn();
+            let mockRemove = vi.fn();
+            let mockToggle = vi.fn();
             let mockTask: Task = {
-                id: 1,
+                id: "1",
                 title: "Toggle a task",
                 completed: false,
             };
-            const mockSetTasks = vi.fn();
-            render(<TasksPage tasks={[mockTask]} setTasks={mockSetTasks} />);
+            let mockTasks: Task[] = [mockTask];
+
+            render(
+                <TasksPage
+                    tasks={mockTasks}
+                    addTask={mockAdd}
+                    removeTask={mockRemove}
+                    toggleTask={mockToggle}
+                />,
+            );
+            const testId = `test toggle ${mockTask.title}`;
+
             const checkbox = screen.getByRole("checkbox", {
-                name: mockTask.title,
+                name: testId,
             });
             const taskList = screen.getByRole("table");
 
@@ -71,29 +101,42 @@ describe("Tasks page", () => {
 
             //* Assert
             expect(taskList).toBeInTheDocument();
-            expect(screen.getByText(mockTask.title)).toBeInTheDocument();
-            expect(mockSetTasks).toHaveBeenCalledTimes(1);
+            expect(mockToggle).toHaveBeenCalledTimes(1);
         });
     });
 
     describe("Tasks deletion", () => {
         it("should delete a task", async () => {
             //* Arrange
+            let mockAdd = vi.fn();
+            let mockRemove = vi.fn();
+            let mockToggle = vi.fn();
             let mockTask: Task = {
-                id: 1,
+                id: "1",
                 title: "Remove a task",
                 completed: false,
             };
-            const mockSetTasks = vi.fn();
-            render(<TasksPage tasks={[mockTask]} setTasks={mockSetTasks} />);
-            const testId = `TrashIcon ${mockTask.title}`;
-            const taskList = screen.getByRole("table");
-            const trashIcon = screen.getByTestId(testId);
+            let mockTasks: Task[] = [mockTask];
 
-            await userEvent.click(trashIcon);
+            render(
+                <TasksPage
+                    tasks={mockTasks}
+                    addTask={mockAdd}
+                    removeTask={mockRemove}
+                    toggleTask={mockToggle}
+                />,
+            );
+            const testId = `test remove ${mockTask.title}`;
+            const taskList = screen.getByRole("table");
+
+            const trashButton = screen.getByRole("button", {
+                name: testId,
+            });
+
+            await userEvent.click(trashButton);
 
             expect(taskList).toBeInTheDocument();
-            expect(mockSetTasks).toHaveBeenCalledTimes(1);
+            expect(mockRemove).toHaveBeenCalledTimes(1);
         });
     });
 });

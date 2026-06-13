@@ -21,7 +21,8 @@ export function TableItem({ task, removeTask, toggleTask }: TableItemProps) {
                 <input
                     className="w-4 h-4"
                     type="checkbox"
-                    aria-label={`${task.title}`}
+                    aria-label={`test toggle ${task.title}`}
+                    data-testid={`test toggle ${task.title}`}
                     checked={task.completed}
                     onChange={() => toggleTask(task.id)}
                 />
@@ -30,8 +31,8 @@ export function TableItem({ task, removeTask, toggleTask }: TableItemProps) {
                 <button
                     type="button"
                     onClick={() => removeTask(task.id)}
-                    aria-label={`Delete ${task.title}`}
-                    data-testid={`TrashIcon ${task.title}`}
+                    aria-label={`test remove ${task.title}`}
+                    data-testid={`test remove ${task.title}`}
                     className="inline-flex justify-center items-center p-1 rounded hover:bg-red-100 text-red-600 transition-colors"
                 >
                     <TrashIcon className="h-6 hover:cursor-pointer" />
