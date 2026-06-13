@@ -1,6 +1,6 @@
 import type { Route } from "./+types/tasks";
 import Tasks from "~/tasks/page";
-import { useTaskService } from "~/services/taskService";
+import { useTaskService } from "~/hooks/useTaskService";
 export function meta({}: Route.MetaArgs) {
     return [
         { title: "CrossTask: ToDo app" },
