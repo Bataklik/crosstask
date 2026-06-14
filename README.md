@@ -1,5 +1,48 @@
 # CrossTask
 
+Task management application built with React, TypeScript and Redux Toolkit.
+
+## Features
+
+- Create tasks
+
+- Delete tasks
+
+- Toggle task status
+
+- Persistent state with Redux Persist
+
+- Unit and component tests
+
+## Tech Stack
+
+- React
+
+- TypeScript
+
+- Redux Toolkit
+
+- Redux Persist
+
+- Tailwind CSS
+
+- Vitest
+
+- React Testing Library
+
+## Installation
+
+```bash
+npm install
+npm run dev
+```
+
+## Testing
+
+```bash
+npm run test
+```
+
 ## Used Resources
 
 - [React Router Structure](https://legacy.reactjs.org/docs/faq-structure.html)
@@ -16,3 +59,4 @@
 - [Vitest and React Testing Library Tutorial: RoadsideCoder](https://www.youtube.com/watch?v=6dOpQIwyV6g)
 - [Vitest Guide](https://vitest.dev/guide/)
 - [Redux Toolkit Quick Start](https://redux-toolkit.js.org/tutorials/quick-start)
+- [Redux Persist](https://redux-toolkit.js.org/rtk-query/usage/persistence-and-rehydration)
