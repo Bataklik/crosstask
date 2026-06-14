@@ -10,14 +10,14 @@ interface TableItemProps {
 export function TableItem({ task, removeTask, toggleTask }: TableItemProps) {
     return (
         <tr className="border-b-2 border-purple-700">
-            <td className="py-8 text-center ">
-                <p>{task.id}.</p>
+            <td className="py-8 w-1/12 text-center ">
+                <p className="md:text-lg sm:text-sm">{task.id}.</p>
             </td>
-            <td className="py-8 text-center">
+            <td className="py-8 w-1/2 text-center">
                 <p className="text-wrap">{task.title}</p>
             </td>
 
-            <td className="py-8 text-center">
+            <td className="py-8 w-1/4 text-center">
                 <input
                     className="w-4 h-4"
                     type="checkbox"

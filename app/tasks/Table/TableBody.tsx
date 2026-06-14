@@ -9,7 +9,7 @@ interface TableBodyProps {
 
 export function TableBody({ tasks, removeTask, toggleTask }: TableBodyProps) {
     return (
-        <tbody>
+        <tbody className="divide-y divide-purple-700">
             {tasks.map((task) => (
                 <TableItem
                     key={task.id}
