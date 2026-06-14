@@ -60,3 +60,4 @@ npm run test
 - [Vitest Guide](https://vitest.dev/guide/)
 - [Redux Toolkit Quick Start](https://redux-toolkit.js.org/tutorials/quick-start)
 - [Redux Persist](https://redux-toolkit.js.org/rtk-query/usage/persistence-and-rehydration)
+- [Github Discussion: noop storage](https://github.com/vercel/next.js/discussions/15687)
